@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ASPdotNetDesign.Models.Employee>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class ="row">
+        <div class="col-8 offset-2">
+            <h1 class="text-center text-primary">Employee Details</h1>
+            <table class="table table-bordered">
+                <tr class="text-center">
+                    <th>EmployeeId</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Salary</th>
+                </tr>
+                @foreach (var data in Model)
+                {
+                        <tr class="text-center">
+                            <td>@data.Id</td>
+                            <td>@data.Name</td>
+                            <td>@data.City</td>
+                            <td>@data.State</td>
+                            <td>@data.Salary</td>
+                        </tr>
+                }
+            </table>
+
+        </div>
+
+    </div>
+</div>
+
