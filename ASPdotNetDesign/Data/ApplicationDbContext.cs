@@ -12,5 +12,6 @@ namespace ASPdotNetDesign.Data
 
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<StudentInfo> StudentInfoes { get; set; }
     }
 }

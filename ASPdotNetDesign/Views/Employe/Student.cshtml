@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Student";
+}
+
+<h1>Student</h1>
+<div class="container">
+    <div class="row">
+        <div class="col offset-0">
+            <h1 class="mb-2 text-center text-primary bg-primary text-white">Student Details</h1>
+            <table class="table table-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Reg</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Dept</th>
+                    <th>Varsity</th>
+                </tr>
+                
+                @foreach(var data in Model)
+                {
+                    <tr>
+                         <td>@data.Id</td>
+                         <td>@data.Reg</td> 
+                         <td>@data.Name</td>
+                         <td>@data.Email</td>
+                         <td>@data.Phone</td>
+                         <td>@data.Dept</td>
+                         <td>@data.varsity</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
