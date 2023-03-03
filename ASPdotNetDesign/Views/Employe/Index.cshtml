@@ -15,6 +15,7 @@
                     <th>City</th>
                     <th>State</th>
                     <th>Salary</th>
+                    <th>Action</th>
                 </tr>
                 @foreach (var data in Model)
                 {
@@ -24,6 +25,11 @@
                             <td>@data.City</td>
                             <td>@data.State</td>
                             <td>@data.Salary</td>
+                            <td>
+                            <a class="btn btn-sm btn-danger" asp-controller="Employe" asp-action="Delete"
+                           asp-route-id="@data.Id">Delete</a>
+                           
+                            </td>
                         </tr>
                 }
             </table>

@@ -17,12 +17,7 @@ namespace ASPdotNetDesign.Controllers
             var result = context.Employees.ToList();
             return View(result);
         }
-        // --Student--
-        public IActionResult Student()
-        {
-            var studentResult = context.StudentInfoes.ToList();
-            return View(studentResult);
-        }
+
         // --Employee Create--
         [HttpGet]
         public IActionResult Create()
@@ -50,6 +45,23 @@ namespace ASPdotNetDesign.Controllers
                 TempData["error"] = "Empty field can not submit";
                 return View(model);
             }
+        }
+
+        // --Employe Delete--
+        public IActionResult Delete(int id)
+        {
+            var del = context.Employees.SingleOrDefault(u => u.Id == id);
+            context.Employees.Remove(del);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+        // --Student--
+        public IActionResult Student()
+        {
+            var studentResult = context.StudentInfoes.ToList();
+            return View(studentResult);
         }
 
         // --Student Create--
