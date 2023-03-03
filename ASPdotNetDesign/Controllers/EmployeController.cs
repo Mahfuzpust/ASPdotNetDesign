@@ -46,6 +46,36 @@ namespace ASPdotNetDesign.Controllers
                 return View(model);
             }
         }
+        // --Employe Edit--
+        public IActionResult Edit(int id)
+        {
+            var emp = context.Employees.SingleOrDefault(u => u.Id == id);
+            var result = new Employee()
+            {
+                Name = emp.Name,
+                City = emp.City,
+                State = emp.State,
+                Salary = emp.Salary
+
+            };
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Employee model)
+        {
+            var emp = new Employee()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                City = model.City,
+                State = model.State,
+                Salary = model.Salary
+            };
+            context.Employees.Update(emp);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         // --Employe Delete--
         public IActionResult Delete(int id)
