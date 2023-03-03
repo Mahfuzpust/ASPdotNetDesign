@@ -18,6 +18,7 @@
                     <th>Phone</th>
                     <th>Dept</th>
                     <th>Varsity</th>
+                    <th>Action</th>
                 </tr>
                 
                 @foreach(var data in Model)
@@ -30,6 +31,12 @@
                          <td>@data.Phone</td>
                          <td>@data.Dept</td>
                          <td>@data.varsity</td>
+                         <td>
+                             <a class="btn btn-small btn-danger" asp-controller="Employe" asp-action="DeleteStu" 
+                             asp-route-id="@data.Id">Delete</a>
+                            <a class="btn btn-small btn-success" asp-controller="Employe" asp-action="EditStu"
+                           asp-route-id="@data.Id">Edit</a>
+                         </td>
                     </tr>
                 }
             </table>

@@ -1,4 +1,5 @@
 ﻿using ASPdotNetDesign.Data;
+using ASPdotNetDesign.Migrations;
 using ASPdotNetDesign.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -84,7 +85,6 @@ namespace ASPdotNetDesign.Controllers
             context.Employees.Remove(del);
             context.SaveChanges();
             return RedirectToAction("Index");
-
         }
 
         // --Student--
@@ -123,6 +123,50 @@ namespace ASPdotNetDesign.Controllers
                 TempData["error"] = "Empty field can not submit";
                 return View(model);
             }
+        }
+
+        // --Student Delete--
+        public IActionResult DeleteStu(int id)
+        {
+            var del = context.StudentInfoes.SingleOrDefault(u => u.Id == id);
+            context.StudentInfoes.Remove(del);
+            context.SaveChanges();
+            return RedirectToAction("Student");
+        }
+
+        // --Student Edit--
+        public IActionResult EditStu(int id)
+        {
+            var emp = context.StudentInfoes.SingleOrDefault(u => u.Id == id);
+            var result = new StudentInfo()
+            {
+                Reg = emp.Reg,
+                Name = emp.Name,
+                Email = emp.Email,
+                Phone = emp.Phone,
+                Dept = emp.Dept,
+                varsity = emp.varsity
+
+            };
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult EditStu(StudentInfo model)
+        {
+            var emp = new StudentInfo()
+            {
+                Id = model.Id,
+                Reg = model.Reg,
+                Name = model.Name,
+                Email = model.Email,
+                Phone = model.Phone,
+                Dept = model.Dept,
+                varsity = model.varsity
+            };
+            context.StudentInfoes.Update(emp);
+            context.SaveChanges();
+            return RedirectToAction("Student");
         }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model ASPdotNetDesign.Models.StudentInfo
+@{
+    ViewData["Title"] = "EditStu";
+}
+
+<h1>EditStu</h1>
+<a class="btn btn-sm btn-primary m-2" asp-controller="Employe" asp-action="Index">Back</a>
+<h1>Create</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center text-primary">Edit Student</h1>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="CreateStu">
+
+                        <div class="form-group">
+                            <label asp-for="Reg"></label>
+                            <input type="number" asp-for="Reg" class="form-control" placeholder="Enter Employee Name" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Name"></label>
+                            <input type="text" asp-for="Name" class="form-control" placeholder="Enter Employee Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input type="email" asp-for="Email" class="form-control" placeholder="Enter City Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Phone"></label>
+                            <input type="number" asp-for="Phone" class="form-control" placeholder="Enter State Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Dept"></label>
+                            <input type="text" asp-for="Dept" class="form-control" placeholder="Enter State Name" />
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="varsity"></label>
+                            <input type="text" asp-for="varsity" class="form-control" placeholder="Enter State Name" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="submit" class="btn-group-sm btn-primary my-2 float-end" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
