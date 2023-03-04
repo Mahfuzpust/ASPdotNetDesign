@@ -50,6 +50,31 @@ namespace ASPdotNetDesign.Controllers
             file.CopyTo(stream);
         }
 
+        // --Image Edit--
+        public IActionResult EditImage(int id)
+        {
+            var emp = context.NewImages.SingleOrDefault(u => u.Id == id);
+            var result = new NewImage()
+            {
+                Name = emp.Name,
+                ImagePath = emp.ImagePath
+            };
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult EditImage(NewImage model)
+        {
+            var emp = new NewImage()
+            {
+                Id = model.Id,
+                Name = model.Name,
+                ImagePath = model.ImagePath,
+            };
+            context.NewImages.Update(emp);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
         // --Image Delete--
         public IActionResult Delete(int id)
         {
