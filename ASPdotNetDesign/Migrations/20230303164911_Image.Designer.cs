@@ -3,6 +3,7 @@ using ASPdotNetDesign.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPdotNetDesign.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230303164911_Image")]
+    partial class Image
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace ASPdotNetDesign.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("ASPdotNetDesign.Models.NewImage", b =>
+            modelBuilder.Entity("ASPdotNetDesign.Models.Image", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +70,7 @@ namespace ASPdotNetDesign.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("NewImages");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("ASPdotNetDesign.Models.StudentInfo", b =>
