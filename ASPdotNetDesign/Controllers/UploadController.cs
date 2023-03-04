@@ -49,6 +49,16 @@ namespace ASPdotNetDesign.Controllers
             FileStream stream = new FileStream(path, FileMode.Create);
             file.CopyTo(stream);
         }
+
+        // --Image Delete--
+        public IActionResult Delete(int id)
+        {
+            var del = context.NewImages.SingleOrDefault(u => u.Id == id);
+            context.NewImages.Remove(del);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Index()
         {
             var data = context.NewImages.ToList();
