@@ -90,8 +90,9 @@ namespace ASPdotNetDesign.Controllers
         // --Student--
         public IActionResult Student()
         {
-            var studentResult = context.StudentInfoes.ToList();
-            return View(studentResult);
+            var res = context.StudentInfoes.ToList();
+            //var studentResult = context.StudentInfoes.ToList();
+            return View(res);
         }
 
         // --Student Create--
@@ -167,6 +168,11 @@ namespace ASPdotNetDesign.Controllers
             context.StudentInfoes.Update(emp);
             context.SaveChanges();
             return RedirectToAction("Student");
+        }
+
+        public IActionResult Department()
+        {
+            return View();
         }
     }
 }
