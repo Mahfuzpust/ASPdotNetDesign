@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASPdotNetDesign.Models.ViewModel
 {
@@ -6,6 +7,7 @@ namespace ASPdotNetDesign.Models.ViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please enter username")]
+        [Remote(action:"UserNameisExit", controller:"Account")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter email")]

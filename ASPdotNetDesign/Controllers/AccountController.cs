@@ -26,6 +26,21 @@ namespace ASPdotNetDesign.Controllers
         {
             return View();
         }
+        //Unique Username 
+
+        [AcceptVerbs("Post", "Get")]
+        public IActionResult UserNameisExit(string userName)
+        {
+            var data = context.Users.Where(e => e.Username == userName).SingleOrDefault();
+            if (data != null)
+            {
+                return Json($"Username {userName} already in use");
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
         public IActionResult SignUP()
         {
             return View();
