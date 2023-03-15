@@ -11,6 +11,7 @@ namespace ASPdotNetDesign.Models.ViewModel
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter email")]
+        [Remote(action: "EmailisExit", controller: "Account")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter mobile number")]

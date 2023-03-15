@@ -41,6 +41,20 @@ namespace ASPdotNetDesign.Controllers
                 return Json(true);
             }
         }
+
+        [AcceptVerbs("Post", "Get")]
+        public IActionResult EmailisExit(string email)
+        {
+            var data = context.Users.Where(e => e.Email == email).SingleOrDefault();
+            if (data != null)
+            {
+                return Json($"Email {email} already in use");
+            }
+            else
+            {
+                return Json(true);
+            }
+        }
         public IActionResult SignUP()
         {
             return View();
