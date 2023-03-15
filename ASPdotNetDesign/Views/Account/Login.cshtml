@@ -12,6 +12,7 @@
                 <a class="text-light btn btn-primary font-weight-bold" asp-action="SignUp" asp-controller="Account">SignUp</a>
                 <a class="text-light btn btn-primary font-weight-bold" asp-action="Login" asp-controller="Account">Login</a>
             </div>
+            <h5 class="text-success text-center">@TempData["successMessage"]</h5>
             <form methos="post" asp-action="Login">
                 <div class="form-group">
                     <label asp-for="Username"></label>

@@ -11,6 +11,5 @@ namespace ASPdotNetDesign.Models.Account
         public long Mobile { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public bool IsRemember { get; set; }
     }
 }

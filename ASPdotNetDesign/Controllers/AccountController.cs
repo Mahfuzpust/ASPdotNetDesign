@@ -1,10 +1,17 @@
-﻿using ASPdotNetDesign.Models.ViewModel;
+﻿using ASPdotNetDesign.Data;
+using ASPdotNetDesign.Models.Account;
+using ASPdotNetDesign.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPdotNetDesign.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly ApplicationDbContext context;
+        public AccountController(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
         public IActionResult Index()
         {
             return View();
@@ -29,7 +36,18 @@ namespace ASPdotNetDesign.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View(model);
+                var data = new User()
+                {
+                    Username= model.Username,
+                    Email=model.Email,
+                    Mobile=model.Mobile,
+                    Password=model.Password,
+                    IsActive=model.IsActive
+                };
+                context.Users.Add(data);
+                context.SaveChanges();
+                TempData["successMessage"] = "You are eligible to login";
+                return RedirectToAction("Login");
             }
             else
             {
