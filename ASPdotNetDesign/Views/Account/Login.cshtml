@@ -17,12 +17,16 @@
                 <div class="form-group">
                     <label asp-for="Username"></label>
                     <input type="text" asp-for="Username" placeholder="Enter your name" class="form-control" autocomplete="off"/>
+                    <span class="text-danger">@TempData["errorUsername"]</span>
+                    <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Password"></label>
-                     <input id="password" type="password" asp-for="Password" placeholder="Enter your name" class="form-control" autocomplete="off"/>
+                     <input id="password" type="password" asp-for="Password" placeholder="Enter your password" class="form-control" autocomplete="off"/>
                     <i id="open" class="fa-sharp fa-solid fa-eye float-end" style="margin-top:-25px; margin-right: 6px; cursor:pointer"></i>
                     <i id="closed" class="fa-sharp fa-solid fa-eye-slash float-end" style="margin-top:-25px; margin-right: 6px; cursor:pointer"></i>
+                    <span class="text-danger">@TempData["errorPassword"]</span>
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <input type="checkbox" asp-for="IsRemember"/>
@@ -49,9 +53,9 @@
             $("#password").attr("type", "text");
         });
         $("#closed").click(function () {
-            $("#closed").hide();
             $("#open").show();
-            $("#password").attr("type", "text");
+            $("#closed").hide();
+            $("#password").attr("type", "password");
         });
     });
 </script>

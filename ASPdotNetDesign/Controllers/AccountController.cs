@@ -1,7 +1,10 @@
 ﻿using ASPdotNetDesign.Data;
 using ASPdotNetDesign.Models.Account;
 using ASPdotNetDesign.Models.ViewModel;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace ASPdotNetDesign.Controllers
 {
@@ -16,7 +19,7 @@ namespace ASPdotNetDesign.Controllers
         {
             return View();
         }
-
+        //Login form
         public IActionResult Login()
         {
             return View();
@@ -24,7 +27,48 @@ namespace ASPdotNetDesign.Controllers
         [HttpPost]
         public IActionResult Login(LoginSignUpViewModel model)
         {
-            return View();
+            if(ModelState.IsValid)
+            {
+                var data = context.Users.Where(e => e.Username == model.Username).SingleOrDefault();
+                if(data != null)
+                {
+                    bool isValid = (data.Username == model.Username && data.Password == model.Password);
+                    if (isValid)
+                    {
+                        var identity = new ClaimsIdentity(new[] {new Claim(ClaimTypes.Name, model.Username) },
+                            CookieAuthenticationDefaults.AuthenticationScheme);
+                        var pricipal = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, pricipal);
+                        HttpContext.Session.SetString("Username", model.Username);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        TempData["errorPassword"] = "password invalid";
+                        return View();
+                    }
+                }
+                else
+                {
+                    TempData["errorUsername"] = "Username not found";
+                    return View(model);
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+        //Logout
+        public IActionResult LogOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var storeCookies = Request.Cookies.Keys;
+            foreach(var cookies in storeCookies)
+            {
+                Response.Cookies.Delete(cookies);
+            }
+            return RedirectToAction("Login", "Account");
         }
         //Unique Username 
 
@@ -42,6 +86,7 @@ namespace ASPdotNetDesign.Controllers
             }
         }
 
+        //Unique Email
         [AcceptVerbs("Post", "Get")]
         public IActionResult EmailisExit(string email)
         {
@@ -55,6 +100,7 @@ namespace ASPdotNetDesign.Controllers
                 return Json(true);
             }
         }
+        //SignUp form
         public IActionResult SignUP()
         {
             return View();

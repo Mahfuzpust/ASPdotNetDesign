@@ -1,11 +1,13 @@
 ﻿using ASPdotNetDesign.Data;
 using ASPdotNetDesign.Models;
 using ASPdotNetDesign.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace ASPdotNetDesign.Controllers
 {
+    [Authorize]
     public class UploadController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -44,6 +46,7 @@ namespace ASPdotNetDesign.Controllers
                 return View(model);
             }
         }
+        [AllowAnonymous]
         public void UploadFile(IFormFile file, string path)
         {
             FileStream stream = new FileStream(path, FileMode.Create);

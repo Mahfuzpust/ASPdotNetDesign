@@ -1,6 +1,7 @@
 ﻿using ASPdotNetDesign.Data;
 using ASPdotNetDesign.Migrations;
 using ASPdotNetDesign.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASPdotNetDesign.Controllers
@@ -26,6 +27,7 @@ namespace ASPdotNetDesign.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Create(Employee model)
         {
             if (ModelState.IsValid)
@@ -102,6 +104,7 @@ namespace ASPdotNetDesign.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult CreateStu(StudentInfo model)
         {
             if (ModelState.IsValid)

@@ -36,6 +36,15 @@
                         </li>
                     </ul>
                 </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                   <div class="navbar float-right">
+                       <span>Welcome to </span> <span class="text-success font-weight-bold p-2"> @User.Identity.Name.ToUpper()</span>
+                       <a class="btn btn-sm btn-danger" asp-action="LogOut" asp-controller="Account">SignOut</a>
+                   </div>
+                }
+
             </div>
         </nav>
     </header>
